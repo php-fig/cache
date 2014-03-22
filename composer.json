@@ -1,0 +1,22 @@
+{
+    "name": "psr/cache",
+    "description": "Common interface for caching libraries",
+    "keywords": ['psr', 'psr-6', 'cache'],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PHP-FIG",
+            "homepage": "http://www.php-fig.org/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Psr\\Cache\\": "."
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
