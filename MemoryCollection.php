@@ -3,7 +3,7 @@
 namespace Psr\Cache;
 
 
-class MemoryCollection implements \IteratorAggregate, CacheCollectionInterface {
+class MemoryCollection implements \IteratorAggregate, CollectionInterface {
     use BasicCollectionTrait;
 
     /**

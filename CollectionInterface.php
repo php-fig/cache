@@ -3,7 +3,7 @@
 namespace Psr\Cache;
 
 
-interface CacheCollectionInterface extends \Traversable, \ArrayAccess {
+interface CollectionInterface extends \Traversable, \ArrayAccess {
 
     /**
      * Saves all cache items in the collection.
