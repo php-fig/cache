@@ -28,3 +28,11 @@ foreach ($pool->getItems(['foo', 'bar']) as $item) {
     printf("%s: %s\n", $item->getKey(), $item->get());
 }
 
+$item = $pool->getItem('baz')->set('baz value');
+$collection = $pool->getItems(['foo', 'bar']);
+$collection[] = $item;
+$collection->save();
+
+foreach ($pool->getItems(['foo', 'bar', 'baz']) as $item) {
+    printf("%s: %s\n", $item->getKey(), $item->get());
+}

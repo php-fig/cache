@@ -5,6 +5,11 @@ namespace Psr\Cache;
 
 trait BasicCollectionTrait {
 
+    /**
+     * The items held by this collection.
+     *
+     * @var ItemInterface[]
+     */
     protected $items;
 
     function __construct(array $items)

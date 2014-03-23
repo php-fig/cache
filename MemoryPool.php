@@ -4,10 +4,17 @@ namespace Psr\Cache;
 
 
 class MemoryPool implements PoolInterface {
-    use BasicPoolTrait;
 
+    /**
+     * The stored data in this cache pool.
+     *
+     * @var array
+     */
     protected $data = array();
 
+    /**
+     * {@inheritdoc}
+     */
     function getItem($key)
     {
         if (!array_key_exists($key, $this->data) || $this->data[$key]['ttd'] < new \DateTime()) {
@@ -21,6 +28,9 @@ class MemoryPool implements PoolInterface {
         return new MemoryCacheItem($this, $key, $this->data[$key]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     function getItems(array $keys)
     {
         $collection = new MemoryCollection($this);

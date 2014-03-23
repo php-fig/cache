@@ -38,7 +38,7 @@ interface ItemInterface
     function get();
 
     /**
-     * Stores a value into the cache.
+     * Sets the value represented by this cache item.
      *
      * The $value argument may be any item that can be serialized by PHP,
      * although the method of serialization is left up to the Implementing
@@ -59,11 +59,43 @@ interface ItemInterface
      *   - If no value is passed, a default value MAY be used. If none is set,
      *     the value should be stored permanently or for as long as the
      *     implementation allows.
-     * @return boolean
+     * @return static
      *   Returns true if the item was successfully saved, or false if there was
      *   an error.
      */
     function set($value, $ttl = null);
+
+    /**
+     * Saves a value into the cache.
+     *
+     * The $value argument may be any item that can be serialized by PHP,
+     * although the method of serialization is left up to the Implementing
+     * Library.
+     *
+     * Calling this method with no parameters will persist the current value
+     * without changes.  Calling it with parameters is equivalent to calling
+     * set() with the same parameters, then persisting.  That is, the following
+     * lines have identical impact.
+     *
+     * $item->set('a value', 300)->save();
+     * $item->save('a value', 300);
+     *
+     * @param mixed $value
+     *   The serializable value to be stored.
+     * @param null $ttl
+     * @param int|\DateTime $ttl
+     *   - If an integer is passed, it is interpreted as the number of seconds
+     *     after which the item MUST be considered expired.
+     *   - If a DateTime object is passed, it is interpreted as the point in
+     *     time after which the the item MUST be considered expired.
+     *   - If no value is passed, a default value MAY be used. If none is set,
+     *     the value should be stored permanently or for as long as the
+     *     implementation allows.
+     * @return boolean
+     *   Returns true if the item was successfully saved, or false if there was
+     *   an error.
+     */
+    public function save($value = null, $ttl = null);
 
     /**
      * Confirms if the cache item lookup resulted in a cache hit.

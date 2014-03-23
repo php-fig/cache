@@ -47,14 +47,8 @@ trait BasicCacheItemTrait {
     function set($value, $ttl = null)
     {
         $this->value = $value;
-        if (func_num_args() == 2) {
-            if ($ttl instanceof \DateTime) {
-                $this->ttd = $ttl;
-            }
-            else {
-                $this->ttd = new \DateTime('now +' . $ttl . ' seconds');
-            }
-        }
+        $this->setTtd($ttl);
+        return $this;
     }
 
     function save($value = null, $ttl = null) {
@@ -62,6 +56,18 @@ trait BasicCacheItemTrait {
             $this->set($value, $ttl);
         }
         $this->write($this->key, $this->value, $this->ttd);
+    }
+
+    protected function setTtd($ttl) {
+        if ($ttl instanceof \DateTime) {
+            $this->ttd = $ttl;
+        }
+        elseif (is_int($ttl)) {
+            $this->ttd = new \DateTime('now +' . $ttl . ' seconds');
+        }
+        elseif (is_null($this->ttd)) {
+            $this->ttd = new \DateTime('now +1 year');
+        }
     }
 
     /**
