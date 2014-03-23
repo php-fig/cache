@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: crell
- * Date: 3/22/14
- * Time: 4:51 PM
- */
 
 namespace Psr\Cache;
 
