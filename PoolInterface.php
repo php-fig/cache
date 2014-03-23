@@ -22,19 +22,20 @@ interface PoolInterface
      *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
      *   MUST be thrown.
      */
-    function getItem($key);
+    public function getItem($key);
 
     /**
      * Returns a traversable set of cache items.
      *
      * @param array $keys
      *   An indexed array of keys of items to retrieve.
-     * @return \Traversable|array
-     *   A traversable collection of Cache Items in the same order as the $keys
-     *   parameter, keyed by the cache keys of each item. If no items are found
-     *   an empty Traversable collection will be returned.
+     * @return CollectionInterface
+     *   A traversable collection of Cache Items keyed by the cache keys of
+     *   each item. A Cache item will be returned for each key, even if that
+     *   key is not found. However, if no keys are specified then an empty
+     *   CollectionInterface object MUST be returned instead.
      */
-    function getItems(array $keys);
+    public function getItems(array $keys = array());
 
     /**
      * Deletes all items in the pool.
@@ -42,7 +43,7 @@ interface PoolInterface
      * @return static
      *   The current pool.
      */
-    function clear();
+    public function clear();
 
     /**
      * Removes multiple items from the pool.

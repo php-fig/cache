@@ -2,7 +2,18 @@
 
 namespace Psr\Cache;
 
-
+/**
+ * Common backend-agnostic implementation of a cache Collection.
+ *
+ * Classes using this trait MUST declare that they implement
+ * \IteratorAggregate, and that must come before CollectionInterface
+ * in the implements list.
+ *
+ * This implementation will likely be suboptimally performant on
+ * cache engines that support bulk operations natively.
+ *
+ * @implements \Psr\Cache\CollectionInterface
+ */
 trait BasicCollectionTrait {
 
     /**
@@ -12,7 +23,7 @@ trait BasicCollectionTrait {
      */
     protected $items;
 
-    function __construct(array $items)
+    public function __construct(array $items = [])
     {
         $this->items = $items;
     }
@@ -66,5 +77,4 @@ trait BasicCollectionTrait {
     {
         return new \ArrayIterator($this->items);
     }
-
 }

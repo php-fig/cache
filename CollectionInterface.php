@@ -2,7 +2,9 @@
 
 namespace Psr\Cache;
 
-
+/**
+ * \Psr\Cache\CollectionInterface is a flexible wrapper for a series of Items.
+ */
 interface CollectionInterface extends \Traversable, \ArrayAccess {
 
     /**

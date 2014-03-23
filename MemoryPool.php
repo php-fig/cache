@@ -2,7 +2,9 @@
 
 namespace Psr\Cache;
 
-
+/**
+ * An in-memory implementation of the Pool interface.
+ */
 class MemoryPool implements PoolInterface {
 
     /**
@@ -15,7 +17,7 @@ class MemoryPool implements PoolInterface {
     /**
      * {@inheritdoc}
      */
-    function getItem($key)
+    public function getItem($key)
     {
         if (!array_key_exists($key, $this->data) || $this->data[$key]['ttd'] < new \DateTime()) {
             $this->data[$key] = [
@@ -31,9 +33,9 @@ class MemoryPool implements PoolInterface {
     /**
      * {@inheritdoc}
      */
-    function getItems(array $keys)
+    public function getItems(array $keys = array())
     {
-        $collection = new MemoryCollection($this);
+        $collection = new MemoryCollection();
         foreach ($keys as $key) {
             $collection[$key] = $this->getItem($key);
         }
@@ -43,7 +45,7 @@ class MemoryPool implements PoolInterface {
     /**
      * {@inheritdoc}
      */
-    function clear()
+    public function clear()
     {
         $this->data = [];
         return $this;
@@ -59,10 +61,17 @@ class MemoryPool implements PoolInterface {
         }
     }
 
-    public function write($key, $value, \DateTime $ttd) {
+    /**
+     * @param $key
+     * @param mixed $value
+     *   The
+     * @param \DateTime $expiration
+     *   The time after which the saved item should be considered expired.
+     */
+    public function write($key, $value, \DateTime $expiration) {
         $this->data[$key] = [
             'value' => $value,
-            'ttd' => $ttd,
+            'ttd' => $expiration,
             'hit' => TRUE,
         ];
     }

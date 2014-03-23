@@ -2,7 +2,11 @@
 
 namespace Psr\Cache;
 
-
+/**
+ * Basic implementation of a backend-agnostic cache item.
+ *
+ * @implements \Psr\Cache\ItemInterface
+ */
 trait BasicCacheItemTrait {
 
     /**
@@ -23,12 +27,12 @@ trait BasicCacheItemTrait {
     /**
      * @var \DateTime
      */
-    protected $ttd;
+    protected $expiration;
 
     /**
      * {@inheritdoc}
      */
-    function getKey()
+    public function getKey()
     {
         return $this->key;
     }
@@ -36,7 +40,7 @@ trait BasicCacheItemTrait {
     /**
      * {@inheritdoc}
      */
-    function get()
+    public function get()
     {
         return $this->isHit() ? $this->value : NULL;
     }
@@ -44,21 +48,56 @@ trait BasicCacheItemTrait {
     /**
      * {@inheritdoc}
      */
-    function set($value, $ttl = null)
+    public function set($value, $ttl = null)
     {
         $this->value = $value;
-        $this->setTtd($ttl);
+        $this->setExpiration($ttl);
         return $this;
     }
 
-    function save($value = null, $ttl = null) {
+    /**
+     * {@inheritdoc}
+     */
+    public function save($value = null, $ttl = null)
+    {
         if ($value) {
             $this->set($value, $ttl);
         }
         $this->write($this->key, $this->value, $this->ttd);
+        return true;
     }
 
-    protected function setTtd($ttl) {
+    /**
+     * {@inheritdoc}
+     */
+    public function isHit()
+    {
+        return $this->hit;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete()
+    {
+        $this->db->delete($this->key);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function exists()
+    {
+        return $this->hit;
+    }
+
+    /**
+     * Sets the expiration for this cache item.
+     *
+     * @param mixed $ttl
+     *   The TTL to convert to a DateTime expiration.
+     */
+    protected function setExpiration($ttl) {
         if ($ttl instanceof \DateTime) {
             $this->ttd = $ttl;
         }
@@ -71,38 +110,14 @@ trait BasicCacheItemTrait {
     }
 
     /**
-     * {@inheritdoc}
-     */
-    function isHit()
-    {
-        return $this->hit;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    function delete()
-    {
-        $this->db->delete($this->key);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    function exists()
-    {
-        return $this->hit;
-    }
-
-    /**
      * Commits this cache item to storage.
      *
      * @param $key
      *   The key of the cache item to save.
      * @param $value
      *   The value to save. It should not be serialized.
-     * @param \DateTime $ttd
+     * @param \DateTime $expiration
      *   The timestamp after which this cache item should be considered expired.
      */
-    protected abstract function write($key, $value, \DateTime $ttd);
+    protected abstract function write($key, $value, \DateTime $expiration);
 }

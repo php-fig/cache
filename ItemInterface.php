@@ -21,7 +21,7 @@ interface ItemInterface
      * @return string
      *   The key string for this cache item.
      */
-    function getKey();
+    public function getKey();
 
     /**
      * Retrieves the value of the item from the cache associated with this objects key.
@@ -35,7 +35,7 @@ interface ItemInterface
      * @return mixed
      *   The value corresponding to this cache item's key, or null if not found.
      */
-    function get();
+    public function get();
 
     /**
      * Sets the value represented by this cache item.
@@ -63,7 +63,7 @@ interface ItemInterface
      *   Returns true if the item was successfully saved, or false if there was
      *   an error.
      */
-    function set($value, $ttl = null);
+    public function set($value, $ttl = null);
 
     /**
      * Saves a value into the cache.
@@ -106,7 +106,7 @@ interface ItemInterface
      * @return boolean
      *   True if the request resulted in a cache hit.  False otherwise.
      */
-    function isHit();
+    public function isHit();
 
     /**
      * Removes the current key from the cache.
@@ -115,17 +115,18 @@ interface ItemInterface
      *   Returns true if the item was deleted or if it did not exist in the
      *   first place, or false if there was an error.
      */
-    function delete();
+    public function delete();
 
     /**
      * Confirms if the cache item exists in the cache.
      *
      * Note: This method MAY avoid retrieving the cached value for performance
      * reasons, which could result in a race condition between exists() and get().
+     * To avoid that potential race condition use isHit() instead.
      *
      * @return boolean
      *  True if item exists in the cache, false otherwise.
      */
-    function exists();
+    public function exists();
 
 }

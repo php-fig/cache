@@ -2,7 +2,9 @@
 
 namespace Psr\Cache;
 
-
+/**
+ * In-memory implementation of a cache item.
+ */
 class MemoryCacheItem implements ItemInterface {
     use BasicCacheItemTrait;
 
@@ -19,6 +21,9 @@ class MemoryCacheItem implements ItemInterface {
         $this->hit = $data['hit'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function write($key, $value, \DateTime $ttd) {
       $this->pool->write($key, $value, $ttd);
     }
