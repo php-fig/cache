@@ -60,8 +60,7 @@ interface ItemInterface
      *     the value should be stored permanently or for as long as the
      *     implementation allows.
      * @return static
-     *   Returns true if the item was successfully saved, or false if there was
-     *   an error.
+     *   The invoked object.
      */
     public function set($value, $ttl = null);
 
@@ -128,5 +127,4 @@ interface ItemInterface
      *  True if item exists in the cache, false otherwise.
      */
     public function exists();
-
 }

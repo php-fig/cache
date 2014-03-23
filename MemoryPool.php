@@ -48,7 +48,7 @@ class MemoryPool implements PoolInterface {
     public function clear()
     {
         $this->data = [];
-        return $this;
+        return true;
     }
 
     /**
