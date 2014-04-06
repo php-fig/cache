@@ -1,7 +1,7 @@
 {
     "name": "psr/cache",
     "description": "Common interface for caching libraries",
-    "keywords": ['psr', 'psr-6', 'cache'],
+    "keywords": ["psr", "psr-6", "cache"],
     "license": "MIT",
     "authors": [
         {
