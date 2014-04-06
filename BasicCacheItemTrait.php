@@ -63,8 +63,7 @@ trait BasicCacheItemTrait {
         if ($value) {
             $this->set($value, $ttl);
         }
-        $this->write($this->key, $this->value, $this->ttd);
-        return true;
+        return $this->write($this->key, $this->value, $this->ttd);
     }
 
     /**
@@ -118,6 +117,9 @@ trait BasicCacheItemTrait {
      *   The value to save. It should not be serialized.
      * @param \DateTime $expiration
      *   The timestamp after which this cache item should be considered expired.
+     * @return boolean
+     *   Returns true if the item was successfully committed, or false if there was
+     *   an error.
      */
     protected abstract function write($key, $value, \DateTime $expiration);
 }
