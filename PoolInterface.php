@@ -29,11 +29,10 @@ interface PoolInterface
      *
      * @param array $keys
      *   An indexed array of keys of items to retrieve.
-     * @return CollectionInterface
-     *   A traversable collection of Cache Items keyed by the cache keys of
-     *   each item. A Cache item will be returned for each key, even if that
-     *   key is not found. However, if no keys are specified then an empty
-     *   CollectionInterface object MUST be returned instead.
+     * @return \Traversable
+     *   A traversable collection of Cache Items in the same order as the $keys
+     *   parameter, keyed by the cache keys of each item. If no items are found
+     *   an empty Traversable collection will be returned.
      */
     public function getItems(array $keys = array());
 
@@ -44,14 +43,4 @@ interface PoolInterface
      *   True if the pool was successfully cleared. False if there was an error.
      */
     public function clear();
-
-    /**
-     * Removes multiple items from the pool.
-     *
-     * @param array $keys
-     *   An array of keys that should be removed from the pool.
-     * @return static
-     *   The invoked object.
-     */
-    public function deleteItems(array $keys);
 }
