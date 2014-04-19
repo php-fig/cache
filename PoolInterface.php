@@ -25,18 +25,6 @@ interface PoolInterface
     public function getItem($key);
 
     /**
-     * Returns a traversable set of cache items.
-     *
-     * @param array $keys
-     *   An indexed array of keys of items to retrieve.
-     * @return \Traversable
-     *   A traversable collection of Cache Items in the same order as the $keys
-     *   parameter, keyed by the cache keys of each item. If no items are found
-     *   an empty Traversable collection will be returned.
-     */
-    public function getItems(array $keys = array());
-
-    /**
      * Deletes all items in the pool.
      *
      * @return boolean
