@@ -15,6 +15,16 @@ namespace Psr\Cache;
 interface CacheItemPoolInterface
 {
     /**
+     * Parameter to save() indicating the cache item should be saved immediately.
+     */
+    const IMMEDIATE = false;
+
+    /**
+     * Parameter to save() indicating the cache item should be deferred to later.
+     */
+    const DEFER = true;
+
+    /**
      * Returns a Cache Item representing the specified key.
      *
      * This method must always return an ItemInterface object, even in case of
@@ -29,7 +39,6 @@ interface CacheItemPoolInterface
      *   MUST be thrown.
      */
     public function getItem($key);
-
 
     /**
      * Returns a traversable set of cache items.
@@ -66,14 +75,15 @@ interface CacheItemPoolInterface
      * @param CacheItemInterface $item
      *
      * @param bool $defer
-     *   Determines whether the item should be saved to the cache immediately or
+     *   One of self::IMMEDIATE (the default) or self::DEFER. Determines
+     *   whether the item should be saved to the cache immediately or
      *   deferred to later. If deferred, the cache item will not be saved
      *   until the commit() method is called.  That is to allow for multi-set
      *   operations supported by some caching implementations.
      * @return static
      *   The invoked object.
      */
-    public function save(CacheItemInterface $item, $defer = false);
+    public function save(CacheItemInterface $item, $defer = self::IMMEDIATE);
 
     /**
      * Persists any deferred cache items.
