@@ -109,6 +109,23 @@ interface CacheItemInterface
     public function exists();
 
     /**
+     * Sets the expiration for this cache item.
+     *
+     * @param int|\DateTime $ttl
+     *   - If an integer is passed, it is interpreted as the number of seconds
+     *     after which the item MUST be considered expired.
+     *   - If a DateTime object is passed, it is interpreted as the point in
+     *     time after which the item MUST be considered expired.
+     *   - If null is passed, a default value MAY be used. If none is set,
+     *     the value should be stored permanently or for as long as the
+     *     implementation allows.
+     *
+     * @return static
+     *   The called object.
+     */
+    public function setExpiration($ttl = null);
+
+    /**
      * Returns the expiration time of a not-yet-expired cache item.
      *
      * If this cache item is a Cache Miss, this method MAY return the time at
