@@ -30,6 +30,20 @@ interface CacheItemPoolInterface
      */
     public function getItem($key);
 
+
+    /**
+     * Returns a traversable set of cache items.
+     *
+     * @param array $keys
+     * An indexed array of keys of items to retrieve.
+     * @return array|\Traversable
+     * A traversable collection of Cache Items keyed by the cache keys of
+     * each item. A Cache item will be returned for each key, even if that
+     * key is not found. However, if no keys are specified then an empty
+     * traversable MUST be returned instead.
+     */
+    public function getItems(array $keys = array());
+
     /**
      * Deletes all items in the pool.
      *
@@ -37,4 +51,36 @@ interface CacheItemPoolInterface
      *   True if the pool was successfully cleared. False if there was an error.
      */
     public function clear();
+
+    /**
+     * Removes multiple items from the pool.
+     *
+     * @param array $keys
+     * An array of keys that should be removed from the pool.
+     * @return static
+     * The invoked object.
+     */
+    public function deleteItems(array $keys);
+
+    /**
+     * @param CacheItemInterface $item
+     *
+     * @param bool $defer
+     *   Determines whether the item should be saved to the cache immediately or
+     *   deferred to later. If deferred, the cache item will not be saved
+     *   until the commit() method is called.  That is to allow for multi-set
+     *   operations supported by some caching implementations.
+     * @return static
+     *   The invoked object.
+     */
+    public function save(CacheItemInterface $item, $defer = false);
+
+    /**
+     * Persists any deferred cache items.
+     *
+     * @return bool
+     *   TRUE if all not-yet-saved items were successfully saved. FALSE otherwise.
+     */
+    public function commit();
+
 }

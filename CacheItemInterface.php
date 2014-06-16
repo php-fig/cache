@@ -77,15 +77,6 @@ interface CacheItemInterface
     public function set($value, $ttl = null);
 
     /**
-     * Saves a value into the cache.
-     *
-     * @return boolean
-     *   Returns true if the item was successfully saved, or false if there was
-     *   an error.
-     */
-    public function save();
-
-    /**
      * Confirms if the cache item lookup resulted in a cache hit.
      *
      * Note: This method MUST NOT have a race condition between calling isHit()
@@ -116,4 +107,15 @@ interface CacheItemInterface
      *  True if item exists in the cache, false otherwise.
      */
     public function exists();
+
+    /**
+     * Returns the expiration time of a not-yet-expired cache item.
+     *
+     * If this cache item is a Cache Miss, this method MAY return the time at
+     * which the item expired or the current time if that is not available.
+     *
+     * @return \DateTime
+     *   The timestamp at which this cache item will expire.
+     */
+    public function getExpiration();
 }
