@@ -91,6 +91,12 @@ interface CacheItemPoolInterface
     /**
      * Persists any deferred cache items.
      *
+     * Note that implementing libraries MUST ensure that deferred cache items
+     * are saved eventually, even if the commit() method is never explicitly
+     * called. They MAY do so via a destructor behavior, a max-items threshold,
+     * timeout, or any other mechanism to ensure that a saved cache item is
+     * never "lost".
+     *
      * @return bool
      *   TRUE if all not-yet-saved items were successfully saved. FALSE otherwise.
      */
