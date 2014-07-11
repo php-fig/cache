@@ -77,15 +77,6 @@ interface CacheItemInterface
     public function set($value, $ttl = null);
 
     /**
-     * Saves a value into the cache.
-     *
-     * @return boolean
-     *   Returns true if the item was successfully saved, or false if there was
-     *   an error.
-     */
-    public function save();
-
-    /**
      * Confirms if the cache item lookup resulted in a cache hit.
      *
      * Note: This method MUST NOT have a race condition between calling isHit()
@@ -95,15 +86,6 @@ interface CacheItemInterface
      *   True if the request resulted in a cache hit.  False otherwise.
      */
     public function isHit();
-
-    /**
-     * Removes the current key from the cache.
-     *
-     * @return boolean
-     *   Returns true if the item was deleted or if it did not exist in the
-     *   first place, or false if there was an error.
-     */
-    public function delete();
 
     /**
      * Confirms if the cache item exists in the cache.
@@ -116,4 +98,32 @@ interface CacheItemInterface
      *  True if item exists in the cache, false otherwise.
      */
     public function exists();
+
+    /**
+     * Sets the expiration for this cache item.
+     *
+     * @param int|\DateTime $ttl
+     *   - If an integer is passed, it is interpreted as the number of seconds
+     *     after which the item MUST be considered expired.
+     *   - If a DateTime object is passed, it is interpreted as the point in
+     *     time after which the item MUST be considered expired.
+     *   - If null is passed, a default value MAY be used. If none is set,
+     *     the value should be stored permanently or for as long as the
+     *     implementation allows.
+     *
+     * @return static
+     *   The called object.
+     */
+    public function setExpiration($ttl = null);
+
+    /**
+     * Returns the expiration time of a not-yet-expired cache item.
+     *
+     * If this cache item is a Cache Miss, this method MAY return the time at
+     * which the item expired or the current time if that is not available.
+     *
+     * @return \DateTime
+     *   The timestamp at which this cache item will expire.
+     */
+    public function getExpiration();
 }
