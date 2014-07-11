@@ -2,7 +2,6 @@
 
 namespace Psr\Cache;
 
-
 /**
  * \Psr\Cache\CacheItemPoolInterface generates Cache\CacheItem objects.
  *
