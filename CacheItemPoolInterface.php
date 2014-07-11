@@ -76,11 +76,6 @@ interface CacheItemPoolInterface
     /**
      * Sets a cache item to be persisted later.
      *
-     * The provided cache item will not be saved immediately. Rather, it and any
-     * other deferred cache items will be saved when the commit() method is
-     * called.  That is to allow for multi-set operations supported by some
-     * caching implementations.
-     *
      * @param CacheItemInterface $item
      *   The cache item to save.
      * @return static
@@ -90,12 +85,6 @@ interface CacheItemPoolInterface
 
     /**
      * Persists any deferred cache items.
-     *
-     * Note that implementing libraries MUST ensure that deferred cache items
-     * are saved eventually, even if the commit() method is never explicitly
-     * called. They MAY do so via a destructor behavior, a max-items threshold,
-     * timeout, or any other mechanism to ensure that a saved cache item is
-     * never "lost".
      *
      * @return bool
      *   TRUE if all not-yet-saved items were successfully saved. FALSE otherwise.
