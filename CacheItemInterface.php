@@ -88,15 +88,6 @@ interface CacheItemInterface
     public function isHit();
 
     /**
-     * Removes the current key from the cache.
-     *
-     * @return boolean
-     *   Returns true if the item was deleted or if it did not exist in the
-     *   first place, or false if there was an error.
-     */
-    public function delete();
-
-    /**
      * Confirms if the cache item exists in the cache.
      *
      * Note: This method MAY avoid retrieving the cached value for performance
