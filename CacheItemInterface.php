@@ -86,5 +86,4 @@ interface CacheItemInterface
      *   The called object.
      */
     public function expiresAfter($time);
-
 }

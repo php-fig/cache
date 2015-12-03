@@ -129,5 +129,4 @@ interface CacheItemPoolInterface
      *   True if all not-yet-saved items were successfully saved or there were none. False otherwise.
      */
     public function commit();
-
 }
