@@ -4,6 +4,13 @@ namespace Psr\Cache;
 
 /**
  * CacheItemPoolInterface generates CacheItemInterface objects.
+ *
+ * The primary purpose of Cache\CacheItemPoolInterface is to accept a key from
+ * the Calling Library and return the associated Cache\CacheItemInterface object.
+ * It is also the primary point of interaction with the entire cache collection.
+ * All configuration and initialization of the Pool is left up to an
+ * Implementing Library.
+ *
  */
 interface CacheItemPoolInterface
 {
