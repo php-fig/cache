@@ -35,7 +35,7 @@ interface CacheItemPoolInterface
     /**
      * Returns a traversable set of cache items.
      *
-     * @param array $keys
+     * @param string[] $keys
      * An indexed array of keys of items to retrieve.
      *
      * @throws InvalidArgumentException
@@ -95,7 +95,7 @@ interface CacheItemPoolInterface
     /**
      * Removes multiple items from the pool.
      *
-     * @param array $keys
+     * @param string[] $keys
      *   An array of keys that should be removed from the pool.
 
      * @throws InvalidArgumentException
