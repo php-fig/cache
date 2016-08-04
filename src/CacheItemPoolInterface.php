@@ -10,7 +10,6 @@ namespace Psr\Cache;
  * It is also the primary point of interaction with the entire cache collection.
  * All configuration and initialization of the Pool is left up to an
  * Implementing Library.
- *
  */
 interface CacheItemPoolInterface
 {
