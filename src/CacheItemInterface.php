@@ -75,7 +75,7 @@ interface CacheItemInterface
     public function set($value);
 
     /**
-     * Sets the expiration time for this cache item.
+     * Sets the absolute expiration time for this cache item.
      *
      * @param \DateTimeInterface|null $expiration
      *   The point in time after which the item MUST be considered expired.
@@ -89,7 +89,7 @@ interface CacheItemInterface
     public function expiresAt($expiration);
 
     /**
-     * Sets the expiration time for this cache item.
+     * Sets the relative expiration time for this cache item.
      *
      * @param int|\DateInterval|null $time
      *   The period of time from the present after which the item MUST be considered
