@@ -14,6 +14,14 @@ namespace Psr\Cache;
 interface CacheItemPoolInterface
 {
     /**
+     * Characters which cannot be used in cache key.
+     *
+     * The following characters are reserved for future extensions and MUST NOT be 
+     * supported by implementing libraries
+     */
+    const RESERVED_KEY_CHARACTERS = '{}()/\@:';
+    
+    /**
      * Returns a Cache Item representing the specified key.
      *
      * This method must always return a CacheItemInterface object, even in case of
