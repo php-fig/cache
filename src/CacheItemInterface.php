@@ -102,4 +102,14 @@ interface CacheItemInterface
      *   The called object.
      */
     public function expiresAfter($time);
+
+    /**
+     * Returns number of seconds until item expires.
+     *
+     * If NULL, the pool should use the default TTL for the storage adapter. If <= 0, the item has expired.
+     *
+     * @return int|null
+     *   Number of seconds until item expires.
+     */
+    public function getTtl();
 }
