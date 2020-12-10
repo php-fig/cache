@@ -5,6 +5,12 @@ namespace Psr\Cache;
 /**
  * Exception interface for all exceptions thrown by an Implementing Library.
  */
-interface CacheException
-{
+if (interface_exists('Throwable')) {
+    interface CacheException extends \Throwable
+    {
+    }
+} else {
+    interface CacheException
+    {
+    }
 }
