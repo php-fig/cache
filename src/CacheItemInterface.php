@@ -72,12 +72,12 @@ interface CacheItemInterface
      * @return static
      *   The invoked object.
      */
-    public function set($value);
+    public function set(mixed $value);
 
     /**
      * Sets the expiration time for this cache item.
      *
-     * @param \DateTimeInterface|null $expiration
+     * @param ?\DateTimeInterface $expiration
      *   The point in time after which the item MUST be considered expired.
      *   If null is passed explicitly, a default value MAY be used. If none is set,
      *   the value should be stored permanently or for as long as the
@@ -86,7 +86,7 @@ interface CacheItemInterface
      * @return static
      *   The called object.
      */
-    public function expiresAt($expiration);
+    public function expiresAt(?\DateTimeInterface $expiration);
 
     /**
      * Sets the expiration time for this cache item.
@@ -101,5 +101,5 @@ interface CacheItemInterface
      * @return static
      *   The called object.
      */
-    public function expiresAfter($time);
+    public function expiresAfter(int|\DateInterval|null $time);
 }
