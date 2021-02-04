@@ -12,8 +12,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
-- **BREAKING** All methods have typed parameters
-- `Psr\Cache\CacheException` extends `\Throwable`
+- **BREAKING** The `CacheItemInterface::expiresAt()` method’s `$expiration` parameter is typehinted with `DateTimeInterface`, see [this explanation](https://www.php-fig.org/psr/psr-6/meta/#82-type-additions)
+- All methods have typed parameters
+- `Psr\Cache\CacheException` extends `Throwable`
 - Bump required PHP version to 8.0
 
 ## [1.0.1](https://github.com/php-fig/cache/compare/1.0.0...1.0.1) - 2016-08-06
