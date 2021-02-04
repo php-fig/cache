@@ -13,7 +13,7 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Changed
 
 - **BREAKING** All methods have typed parameters
-- `Psr\CacheCacheException` extends `\Throwable`
+- `Psr\Cache\CacheException` extends `\Throwable`
 - Bump required PHP version to 8.0
 
 ## [1.0.1](https://github.com/php-fig/cache/compare/1.0.0...1.0.1) - 2016-08-06
