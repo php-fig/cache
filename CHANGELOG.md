@@ -2,7 +2,21 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.0.1 - 2016-08-06
+## [3.0.0](https://github.com/php-fig/cache/compare/2.0.0...3.0.0) - 2021-02-04
+
+### Changed
+
+- **BREAKING** All methods have return types
+
+## [2.0.0](https://github.com/php-fig/cache/compare/1.0.1...2.0.0) - 2021-02-04
+
+### Changed
+
+- **BREAKING** All methods have typed parameters
+- `Psr\CacheCacheException` extends `\Throwable`
+- Bump required PHP version to 8.0
+
+## [1.0.1](https://github.com/php-fig/cache/compare/1.0.0...1.0.1) - 2016-08-06
 
 ### Fixed
 
