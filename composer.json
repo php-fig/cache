@@ -18,7 +18,7 @@
         }
     },
     "suggest": {
-        "fig/cache-util": "Provides some useful PSR-6 caching utilities"
+        "fig/cache-util": "Provides some useful PSR-6 utilities"
     },
     "extra": {
         "branch-alias": {
