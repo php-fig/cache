@@ -17,6 +17,9 @@
             "Psr\\Cache\\": "src/"
         }
     },
+    "suggest": {
+        "fig/cache-util": "Provides some useful PSR-6 utilities"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "3.0.x-dev"
