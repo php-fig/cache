@@ -77,7 +77,7 @@ interface CacheItemInterface
     /**
      * Sets the absolute expiration time for this cache item.
      *
-     * @param ?\DateTimeInterface $expiration
+     * @param \DateTimeInterface|null $expiration
      *   The point in time after which the item MUST be considered expired.
      *   If null is passed explicitly, a default value MAY be used. If none is set,
      *   the value should be stored permanently or for as long as the
